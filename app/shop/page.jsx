@@ -20,6 +20,22 @@ export default function Products() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (
+      process.env.NODE_ENV !== "production" &&
+      window.localStorage.getItem("__shoesafari_e2e") === "1"
+    ) {
+      setProducts([
+        {
+          id: "e2e-trail-runner",
+          name: "E2E Trail Runner",
+          price: 79.99,
+          img: "/images/shoe1.png",
+        },
+      ]);
+      setIsLoading(false);
+      return;
+    }
+
     const fetchProducts = async () => {
       try {
         if (!db) {
@@ -99,6 +115,7 @@ export default function Products() {
                   </Link>
                   <button
                     className="border-red-800 rounded-full px-2 py-2 mt-2 border-2 hover:border-red-600"
+                    aria-label={`Add ${prod.name} to cart`}
                     onClick={() => {
                       addToCart(prod);
                       showToast("Item added to cart");

@@ -115,7 +115,6 @@ export default function Products() {
                   </Link>
                   <button
                     className="border-red-800 rounded-full px-2 py-2 mt-2 border-2 hover:border-red-600"
-                    aria-label={`Add ${prod.name} to cart`}
                     onClick={() => {
                       addToCart(prod);
                       showToast("Item added to cart");

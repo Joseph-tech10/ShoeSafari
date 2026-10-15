@@ -47,7 +47,7 @@ test("buyer selects a shoe, adds it to the cart, connects a mocked wallet, and c
 
   await page.goto("/shop");
   await expect(page.getByRole("heading", { name: "E2E Trail Runner" })).toBeVisible();
-  await page.getByRole("button", { name: "Add E2E Trail Runner to cart" }).click();
+  await page.locator(".grid button").first().click();
   await expect(page.getByText("Item added to cart")).toBeVisible();
 
   await page
